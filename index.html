@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Она была первой</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-star">✦</div>
+      <p class="loader-text">Она была первой</p>
+    </div>
+  </div>
+
+  <div class="cursor-trail" id="cursor-trail"></div>
+  <div class="cursor-star" id="cursor-star">✦</div>
+
+  <div class="particles" id="particles"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="glow glow-3"></div>
+
+  <audio id="bg-music" loop>
+    <source src="music/classic.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="music-btn" class="music-btn" onclick="toggleMusic()">♪</button>
+
+  <header>
+    <h1 class="title">Она была первой</h1>
+    <p class="subtitle">Женщины, оставшиеся в тени</p>
+    <a href="quiz.html" class="quiz-link">Пройти викторину →</a>
+  </header>
+
+  <div class="divider">
+    <span class="divider-line"></span>
+    <span class="divider-star">✦</span>
+    <span class="divider-line"></span>
+  </div>
+
+  <section class="quote-block">
+    <p class="quote-label">Цитата дня</p>
+    <blockquote id="daily-quote" class="daily-quote"></blockquote>
+    <p class="quote-author" id="daily-author"></p>
+    <button class="copy-btn" onclick="copyQuote()">Скопировать цитату</button>
+  </section>
+
+  <div class="divider">
+    <span class="divider-line"></span>
+    <span class="divider-star">✦</span>
+    <span class="divider-line"></span>
+  </div>
+
+  <section class="filters">
+    <button class="filter-btn active" data-filter="all">Все</button>
+    <button class="filter-btn" data-filter="artist">Художницы</button>
+    <button class="filter-btn" data-filter="scientist">Учёные</button>
+    <button class="filter-btn" data-filter="surgeon">Хирурги</button>
+    <button class="filter-btn" data-filter="queen">Царицы</button>
+    <button class="filter-btn" data-filter="programmer">Программисты</button>
+    <button class="filter-btn" data-filter="mathematician">Математики</button>
+    <button class="filter-btn" data-filter="designer">Модельеры</button>
+  </section>
+
+  <section class="gallery" id="gallery">
+
+    <div class="card" data-category="artist" onclick="openModal('frieda')">
+      <div class="frame">
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="shine"></div>
+        <img src="images/frieda.jpg" alt="Фрида Кало">
+      </div>
+      <h3>Фрида Кало</h3>
+      <p class="years">1907–1954</p>
+      <div class="role-wrapper">
+        <p class="role" onclick="toggleRole(event)">Художница</p>
+        <div class="role-tip">
+          Женщина, которая создаёт картины, скульптуры, фрески. Раньше женщинам запрещали учиться в академиях — многим приходилось бороться за право заниматься искусством.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="scientist" onclick="openModal('curie')">
+      <div class="frame">
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="shine"></div>
+        <img src="images/curie.jpg" alt="Мария Кюри">
+      </div>
+      <h3>Мария Кюри</h3>
+      <p class="years">1867–1934</p>
+      <div class="role-wrapper">
+        <p class="role" onclick="toggleRole(event)">Учёная</p>
+        <div class="role-tip">
+          Женщина, которая занимается наукой: физикой, химией, биологией. Женщинам долго запрещали учиться в университетах — им приходилось доказывать своё право на науку.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="surgeon" onclick="openModal('barry')">
+      <div class="frame">
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="shine"></div>
+        <img src="images/barry.jpg" alt="Джеймс Барри">
+      </div>
+      <h3>Джеймс Барри</h3>
+      <p class="years">1789–1865</p>
+      <div class="role-wrapper">
+        <p class="role" onclick="toggleRole(event)">Хирург</p>
+        <div class="role-tip">
+          Врач, который делает операции. Долгое время женщинам не разрешали быть хирургами — считалось, что это «не женское дело».
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="scientist" onclick="openModal('franklin')">
+      <div class="frame">
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="shine"></div>
+        <img src="images/franklin.jpg" alt="Розалинд Франклин">
+      </div>
+      <h3>Розалинд Франклин</h3>
+      <p class="years">1920–1958</p>
+      <div class="role-wrapper">
+        <p class="role" onclick="toggleRole(event)">Учёная</p>
+        <div class="role-tip">
+          Женщина, которая занимается наукой. Розалинд работала с рентгеновскими лучами — и её снимки изменили биологию навсегда.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="queen" onclick="openModal('cleopatra')">
+      <div class="frame">
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="shine"></div>
+        <img src="images/cleopatra.jpg" alt="Клеопатра">
+      </div>
+      <h3>Клеопатра</h3>
+      <p class="years">69–30 до н. э.</p>
+      <div class="role-wrapper">
+        <p class="role" onclick="toggleRole(event)">Царица</p>
+        <div class="role-tip">
+          Правительница страны или народа. В древности женщины редко правили — но некоторые становились символами власти и ума.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="programmer" onclick="openModal('lovelace')">
+      <div class="frame">
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="shine"></div>
+        <img src="images/lovelace.jpg" alt="Ада Лавлейс">
+      </div>
+      <h3>Ада Лавлейс</h3>
+      <p class="years">1815–1852</p>
+      <div class="role-wrapper">
+        <p class="role" onclick="toggleRole(event)">Программист</p>
+        <div class="role-tip">
+          Человек, который пишет программы для компьютеров. Первым программистом в истории была женщина — Ада Лавлейс.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="artist" onclick="openModal('serebryakova')">
+      <div class="frame">
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="shine"></div>
+        <img src="images/serebryakova.jpg" alt="Зинаида Серебрякова">
+      </div>
+      <h3>Зинаида Серебрякова</h3>
+      <p class="years">1884–1967</p>
+      <div class="role-wrapper">
+        <p class="role" onclick="toggleRole(event)">Художница</p>
+        <div class="role-tip">
+          Русская художница. Её автопортрет «За туалетом» стал одной из самых известных картин в русском искусстве.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="mathematician" onclick="openModal('kovalevskaya')">
+      <div class="frame">
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="shine"></div>
+        <img src="images/kovalevskaya.jpg" alt="Софья Ковалевская">
+      </div>
+      <h3>Софья Ковалевская</h3>
+      <p class="years">1850–1891</p>
+      <div class="role-wrapper">
+        <p class="role" onclick="toggleRole(event)">Математик</p>
+        <div class="role-tip">
+          Первая в мире женщина — профессор математики. Ей пришлось фиктивно выйти замуж, чтобы уехать учиться за границу.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-category="designer" onclick="openModal('chanel')">
+      <div class="frame">
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <div class="shine"></div>
+        <img src="images/chanel.jpg" alt="Коко Шанель">
+      </div>
+      <h3>Коко Шанель</h3>
+      <p class="years">1883–1971</p>
+      <div class="role-wrapper">
+        <p class="role" onclick="toggleRole(event)">Модельер</p>
+        <div class="role-tip">
+          Французский модельер. Освободила женщин от корсетов, создала «маленькое чёрное платье» и духи «Шанель №5».
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="divider">
+    <span class="divider-line"></span>
+    <span class="divider-star">✦</span>
+    <span class="divider-line"></span>
+  </div>
+
+  <section class="timeline-section">
+    <h2 class="section-title">Лента времени</h2>
+    <div class="timeline">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item" onclick="openModal('cleopatra')">
+        <div class="timeline-dot"></div>
+        <p class="timeline-year">69 до н. э.</p>
+        <p class="timeline-name">Клеопатра</p>
+      </div>
+
+      <div class="timeline-item" onclick="openModal('barry')">
+        <div class="timeline-dot"></div>
+        <p class="timeline-year">1789</p>
+        <p class="timeline-name">Джеймс Барри</p>
+      </div>
+
+      <div class="timeline-item" onclick="openModal('lovelace')">
+        <div class="timeline-dot"></div>
+        <p class="timeline-year">1815</p>
+        <p class="timeline-name">Ада Лавлейс</p>
+      </div>
+
+      <div class="timeline-item" onclick="openModal('kovalevskaya')">
+        <div class="timeline-dot"></div>
+        <p class="timeline-year">1850</p>
+        <p class="timeline-name">Софья Ковалевская</p>
+      </div>
+
+      <div class="timeline-item" onclick="openModal('curie')">
+        <div class="timeline-dot"></div>
+        <p class="timeline-year">1867</p>
+        <p class="timeline-name">Мария Кюри</p>
+      </div>
+
+      <div class="timeline-item" onclick="openModal('chanel')">
+        <div class="timeline-dot"></div>
+        <p class="timeline-year">1883</p>
+        <p class="timeline-name">Коко Шанель</p>
+      </div>
+
+      <div class="timeline-item" onclick="openModal('serebryakova')">
+        <div class="timeline-dot"></div>
+        <p class="timeline-year">1884</p>
+        <p class="timeline-name">Зинаида Серебрякова</p>
+      </div>
+
+      <div class="timeline-item" onclick="openModal('frieda')">
+        <div class="timeline-dot"></div>
+        <p class="timeline-year">1907</p>
+        <p class="timeline-name">Фрида Кало</p>
+      </div>
+
+      <div class="timeline-item" onclick="openModal('franklin')">
+        <div class="timeline-dot"></div>
+        <p class="timeline-year">1920</p>
+        <p class="timeline-name">Розалинд Франклин</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider">
+    <span class="divider-line"></span>
+    <span class="divider-star">✦</span>
+    <span class="divider-line"></span>
+  </div>
+
+  <section class="about">
+    <h2 class="section-title">Об проекте</h2>
+    <p>
+      Этот сайт — о женщинах, чьи имена история почти не запомнила.
+      За многими открытиями и произведениями искусства стояли женщины —
+      но лавры часто доставались мужчинам. Я собрала девять историй,
+      чтобы напомнить: они были. И они были первыми.
+    </p>
+    <button class="share-btn" onclick="shareSite()">Поделиться сайтом</button>
+  </section>
+
+  <div class="divider">
+    <span class="divider-line"></span>
+    <span class="divider-star">✦</span>
+    <span class="divider-line"></span>
+  </div>
+
+  <section class="sources">
+    <h2 class="section-title">Источники</h2>
+    <ul>
+      <li><a href="https://ru.wikipedia.org/wiki/Фрида_Кало" target="_blank">Фрида Кало — Википедия</a></li>
+      <li><a href="https://ru.wikipedia.org/wiki/Кюри,_Мария" target="_blank">Кюри, Мария — Википедия</a></li>
+      <li><a href="https://ru.wikipedia.org/wiki/Барри,_Джеймс" target="_blank">Барри, Джеймс — Википедия</a></li>
+      <li><a href="https://ru.wikipedia.org/wiki/Франклин,_Розалинд" target="_blank">Франклин, Розалинд — Википедия</a></li>
+      <li><a href="https://ru.wikipedia.org/wiki/Клеопатра" target="_blank">Клеопатра — Википедия</a></li>
+      <li><a href="https://ru.wikipedia.org/wiki/Лавлейс,_Ада" target="_blank">Лавлейс, Ада — Википедия</a></li>
+      <li><a href="https://ru.wikipedia.org/wiki/Серебрякова,_Зинаида_Евгеньевна" target="_blank">Серебрякова, Зинаида — Википедия</a></li>
+      <li><a href="https://ru.wikipedia.org/wiki/Ковалевская,_Софья_Васильевна" target="_blank">Ковалевская, Софья — Википедия</a></li>
+      <li><a href="https://ru.wikipedia.org/wiki/Шанель,_Коко" target="_blank">Шанель, Коко — Википедия</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <div class="footer-ornament">✦ ✦ ✦</div>
+    <p class="footer-title">Она была первой</p>
+    <p class="footer-sub">Женщины, оставшиеся в тени</p>
+    <div class="footer-links">
+      <a href="quiz.html">Викторина</a>
+      <span class="footer-dot">·</span>
+      <a href="#gallery">Галерея</a>
+      <span class="footer-dot">·</span>
+      <a href="#top">Наверх</a>
+    </div>
+    <p class="footer-copy">© 2026–2027 · Сделано с ♥</p>
+    <p class="views">Сайт посмотрели: <span id="view-count">0</span> раз</p>
+  </footer>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modal-img" src="">
+      <h2 id="modal-name"></h2>
+      <p id="modal-text"></p>
+
+      <div class="fact-block">
+        <p class="fact-label">А ты знал?</p>
+        <p class="fact-text" id="modal-fact"></p>
+      </div>
+
+      <div id="modal-full" class="modal-full" style="display:none;">
+        <p id="modal-full-text"></p>
+      </div>
+
+      <button class="more-btn" id="more-btn" onclick="toggleFullBio()">Подробнее →</button>
+
+      <blockquote id="modal-quote"></blockquote>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Ссылка скопирована!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

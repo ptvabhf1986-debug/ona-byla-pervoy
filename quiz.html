@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Викторина — Она была первой</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+
+  <div class="cursor-trail" id="cursor-trail"></div>
+  <div class="cursor-star" id="cursor-star">✦</div>
+
+  <div class="particles" id="particles"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="glow glow-3"></div>
+
+  <div class="confetti-container" id="confetti"></div>
+
+  <header>
+    <h1 class="title">Она была первой</h1>
+    <p class="subtitle">Викторина</p>
+    <a href="index.html" class="back-link">← Вернуться в галерею</a>
+  </header>
+
+  <section class="quiz-section">
+
+    <div id="start-screen" class="quiz-screen">
+      <h2 class="quiz-heading">Проверь себя</h2>
+      <p class="quiz-sub">6 вопросов о женщинах, оставшихся в тени</p>
+      <button class="quiz-btn" onclick="startQuiz()">Начать</button>
+    </div>
+
+    <div id="question-screen" class="quiz-screen" style="display:none;">
+      <div class="progress-wrapper">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p class="progress-text" id="progress-text">1 / 6</p>
+      </div>
+
+      <h2 class="quiz-heading" id="question"></h2>
+      <div id="answers" class="answers"></div>
+
+      <div id="reveal-card" class="reveal-card" style="display:none;">
+        <img id="reveal-img" src="" alt="">
+        <div class="reveal-info">
+          <p class="reveal-name" id="reveal-name"></p>
+          <p class="reveal-fact" id="reveal-fact"></p>
+        </div>
+      </div>
+
+      <p id="feedback" class="feedback"></p>
+      <button class="quiz-btn" id="next-btn" onclick="nextQuestion()" style="display:none;">Дальше →</button>
+    </div>
+
+    <div id="end-screen" class="quiz-screen" style="display:none;">
+      <h2 class="quiz-heading" id="end-title">Готово!</h2>
+      <p class="quiz-result" id="result-text"></p>
+      <p class="quiz-verdict" id="verdict"></p>
+      <button class="quiz-btn" onclick="restartQuiz()">Пройти заново</button>
+      <a href="index.html" class="back-link-bottom">← Вернуться в галерею</a>
+    </div>
+
+  </section>
+
+  <script src="quiz.js"></script>
+</body>
+</html>
